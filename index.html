@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarbani Mondal — QA Engineer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --accent: #00e5a0;
+    --accent2: #5b6af7;
+    --accent3: #ff6b6b;
+    --text: #f0f0f5;
+    --text2: #9999b0;
+    --text3: #5a5a75;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --card: rgba(255,255,255,0.03);
+    --card-hover: rgba(255,255,255,0.06);
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --glow: 0 0 40px rgba(0, 229, 160, 0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text2);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .hero-content { flex: 1; max-width: 680px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0,229,160,0.3);
+    border-radius: 100px;
+    background: rgba(0,229,160,0.06);
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  .hero h1 .line2 {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.25);
+  }
+  .hero h1 .accent-word { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,229,160,0.35); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--border2);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); background: rgba(0,229,160,0.06); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  .hero-visual {
+    flex: 0 0 360px;
+    position: relative;
+    margin-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .code-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+  }
+  .code-card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .code-filename {
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+    margin-left: 6px;
+  }
+  .code-body { padding: 1rem 1.2rem; font-size: 0.75rem; line-height: 1.9; }
+  .kw { color: #c792ea; }
+  .fn { color: #82aaff; }
+  .str { color: #c3e88d; }
+  .cm { color: #546e7a; }
+  .var { color: #f78c6c; }
+  .num { color: var(--accent); }
+
+  .badge-row {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+  .badge-pass { background: rgba(0,229,160,0.12); color: var(--accent); border: 1px solid rgba(0,229,160,0.25); }
+  .badge-blue { background: rgba(91,106,247,0.12); color: #8b9dff; border: 1px solid rgba(91,106,247,0.25); }
+  .badge-orange { background: rgba(255,107,107,0.1); color: #ff9a9a; border: 1px solid rgba(255,107,107,0.2); }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 3.5rem 4rem;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .section-sub {
+    color: var(--text2);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 540px;
+    margin-bottom: 3.5rem;
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS ── */
+  .skills-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover {
+    background: var(--card-hover);
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+  .skill-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .si-green { background: rgba(0,229,160,0.12); }
+  .si-blue { background: rgba(91,106,247,0.12); }
+  .si-red { background: rgba(255,107,107,0.12); }
+  .si-yellow { background: rgba(254,188,46,0.12); }
+
+  .skill-card h3 {
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text2);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: rgba(0,229,160,0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,160,0.1);
+  }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-img-area {
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 200px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card.featured .project-img-area {
+    min-height: unset;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+
+  .mock-browser {
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+    width: 100%;
+    max-width: 340px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .mock-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 0.8rem;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+  .mock-url {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 0.62rem;
+    color: var(--text3);
+    margin-left: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mock-content {
+    padding: 0.8rem;
+    min-height: 120px;
+  }
+  .mock-header-bar {
+    background: #1a2540;
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.6rem;
+  }
+  .mock-logo-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--accent2);
+    flex-shrink: 0;
+  }
+  .mock-logo-text {
+    font-size: 0.65rem;
+    color: #7eb3ff;
+    font-weight: 500;
+  }
+  .mock-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 0.6rem;
+  }
+  .mock-tab {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--text3);
+  }
+  .mock-tab.active {
+    background: rgba(0,229,160,0.15);
+    color: var(--accent);
+  }
+  .mock-input-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .mock-input {
+    flex: 1;
+    height: 22px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .mock-btn-sm {
+    height: 22px;
+    padding: 0 8px;
+    background: var(--accent);
+    border-radius: 4px;
+    font-size: 0.55rem;
+    color: var(--bg);
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  /* Jira mock */
+  .jira-mock {
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+    width: 100%;
+    max-width: 340px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .jira-header {
+    background: #0052cc;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .jira-title { font-size: 0.68rem; color: white; font-weight: 600; }
+  .jira-body { padding: 0.6rem; }
+  .jira-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 6px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .jira-id { font-size: 0.6rem; color: #4c9aff; font-weight: 500; min-width: 52px; }
+  .jira-text { font-size: 0.6rem; color: var(--text2); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .jira-status {
+    font-size: 0.55rem;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(255,171,0,0.15);
+    color: #ffab00;
+    white-space: nowrap;
+  }
+
+  /* Postman mock */
+  .postman-mock {
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+    width: 100%;
+    max-width: 320px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .pm-header {
+    background: #ff6c37;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pm-title { font-size: 0.68rem; color: white; font-weight: 600; }
+  .pm-body { padding: 0.7rem; }
+  .pm-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .pm-method {
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 2px 5px;
+    border-radius: 3px;
+    min-width: 36px;
+    text-align: center;
+  }
+  .pm-get { background: rgba(0,229,160,0.15); color: var(--accent); }
+  .pm-post { background: rgba(254,188,46,0.15); color: #febc2e; }
+  .pm-del { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+  .pm-label { font-size: 0.6rem; color: var(--text2); flex: 1; }
+  .pm-pass { font-size: 0.6rem; color: var(--accent); font-weight: 600; }
+
+  /* Selenium mock */
+  .selenium-mock {
+    background: #0d1117;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    width: 100%;
+    max-width: 320px;
+    font-family: var(--font-mono);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .sel-header {
+    background: #161b22;
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .sel-title { font-size: 0.65rem; color: #58a6ff; }
+  .sel-body { padding: 0.7rem; }
+  .sel-line { font-size: 0.65rem; line-height: 1.8; }
+  .sel-check { color: #3fb950; }
+  .sel-sep { color: #484f58; margin: 0.3rem 0; }
+  .sel-result { color: #f0f6fc; }
+  .sel-pass { color: #3fb950; font-weight: 600; }
+  .sel-muted { color: #8b949e; }
+
+  .project-info { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+
+  .project-type {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.7rem;
+  }
+
+  .project-info h3 {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.7rem;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .project-info p {
+    color: var(--text2);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text3);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(0,229,160,0.3);
+    border-radius: 6px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .project-link:hover { background: rgba(0,229,160,0.1); }
+
+  .highlight-bar {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: rgba(0,229,160,0.06);
+    border-top: 1px solid rgba(0,229,160,0.15);
+    flex-wrap: wrap;
+  }
+  .hl-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+  }
+  .hl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .hl-text { color: var(--text2); }
+
+  /* ── CERTIFICATIONS ── */
+  .certs-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .cert-card:hover { background: var(--card-hover); border-color: var(--border2); }
+
+  .cert-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .cert-info h4 {
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  .cert-info p {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    color: var(--text2);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    margin-bottom: 1rem;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .detail-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    background: rgba(0,229,160,0.1);
+  }
+  .detail-key {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .detail-val {
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── CONTACT ── */
+  .contact-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    text-align: center;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem 1.2rem;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .contact-card:hover {
+    border-color: rgba(0,229,160,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,229,160,0.1);
+  }
+  .contact-card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+  .contact-card h4 {
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .contact-card p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.03em;
+    word-break: break-all;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+  .footer-text span { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+  .delay-5 { animation-delay: 0.7s; }
+
+  .selenium-inner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 900px) {
+    .selenium-inner-grid {
+      grid-template-columns: 1fr;
+    }
+    .selenium-inner-grid .project-img-area {
+      border-right: none !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+  }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    background: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text2);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 61px; left: 0; right: 0;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    padding: 1.5rem 2rem;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text2);
+    text-decoration: none;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--accent); }
+
+  /* ── RESUME DOWNLOAD BTN ── */
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text2);
+    padding: 0.85rem 1.6rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--border2);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .btn-download:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,160,0.05); }
+
+  /* ── CONTACT GRID 4-col ── */
+  .contact-grid { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .contact-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero { padding: 7rem 1.5rem 3rem; flex-direction: column; }
+    .hero-visual { margin-left: 0; margin-top: 3rem; flex: none; width: 100%; }
+    .section-inner { padding: 4rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr !important; }
+    .project-card.featured .project-img-area { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+    .project-card[style*="grid-column"] > div { grid-template-columns: 1fr !important; }
+    .project-card[style*="grid-column"] .project-img-area { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-grid { grid-template-columns: 1fr !important; max-width: 340px; margin: 3rem auto 0; }
+    .contact-inner { padding: 4rem 1.5rem; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .hero-stats { gap: 1.2rem; flex-wrap: wrap; }
+    .stat-num { font-size: 1.4rem; }
+    .hero-btns { flex-direction: column; align-items: flex-start; }
+    .btn-primary, .btn-secondary, .btn-download { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2.4rem; }
+    .section-title { font-size: 1.8rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1rem; }
+    .stat-num { font-size: 1.3rem; }
+    nav { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>S</span>arbani Mondal</a>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certs</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:0.8rem;">
+    <a class="nav-cta" href="https://mail.google.com/mail/?view=cm&to=sarbanimandal699@gmail.com">Hire Me →</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#certifications" onclick="closeMobile()">Certifications</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://mail.google.com/mail/?view=cm&to=sarbanimandal699@gmail.com" onclick="closeMobile()" style="color:var(--accent);">Hire Me →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag fade-in delay-1">Open to Work · QA Engineer</div>
+    <h1 class="fade-in delay-2">
+      Building <span class="accent-word">Quality</span>
+      <span class="line2">into every product.</span>
+    </h1>
+    <p class="hero-desc fade-in delay-3">
+      QA Engineer with hands-on experience in manual testing, Selenium automation, and API testing.
+      I create reliable test coverage, find defects early, and build tools that make testing faster and smarter.
+    </p>
+    <div class="hero-btns fade-in delay-4">
+      <a class="btn-primary" href="#projects">View My Work ↓</a>
+      <a class="btn-secondary" href="https://mail.google.com/mail/?view=cm&to=sarbanimandal699@gmail.com">Get In Touch</a>
+      <a class="btn-download" href="Sarbani_Mondal_Resume.pdf" target="_blank">⬇ Download Resume</a>
+    </div>
+    <div class="hero-stats fade-in delay-5">
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">TEST CASES DESIGNED</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6/6</div>
+        <div class="stat-label">API TESTS PASSED</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">AUTOMATION PASS RATE</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">CERTIFICATIONS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-in delay-3">
+    <div class="code-card">
+      <div class="code-card-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <div class="code-filename">test_login.py</div>
+      </div>
+      <div class="code-body">
+        <div><span class="kw">def</span> <span class="fn">test_valid_login</span>(driver):</div>
+        <div>&nbsp;&nbsp;<span class="cm"># TC_001: Valid credentials</span></div>
+        <div>&nbsp;&nbsp;driver.<span class="fn">find_element</span>(By.ID, <span class="str">"user"</span>)</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;.<span class="fn">send_keys</span>(<span class="str">"student"</span>)</div>
+        <div>&nbsp;&nbsp;driver.<span class="fn">find_element</span>(By.ID, <span class="str">"pass"</span>)</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;.<span class="fn">send_keys</span>(<span class="str">"Password123"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="kw">assert</span> <span class="str">"logged-in"</span> <span class="kw">in</span> driver.<span class="var">current_url</span></div>
+        <div>&nbsp;&nbsp;<span class="cm"># ✅ RESULT: PASS</span></div>
+      </div>
+    </div>
+    <div class="badge-row">
+      <div class="badge badge-pass">✅ 5/5 Tests Pass</div>
+      <div class="badge badge-blue">Selenium + Pytest</div>
+      <div class="badge badge-orange">Python 3.14</div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="section-inner">
+    <div class="section-label">What I Know</div>
+    <h2 class="section-title">Technical Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon si-green">🧪</div>
+        <h3>Manual Testing</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Test Case Design</span>
+          <span class="skill-tag">Bug Reporting</span>
+          <span class="skill-tag">Regression Testing</span>
+          <span class="skill-tag">Smoke Testing</span>
+          <span class="skill-tag">BVA</span>
+          <span class="skill-tag">Equivalence Partitioning</span>
+          <span class="skill-tag">UAT</span>
+          <span class="skill-tag">Defect Life Cycle</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon si-blue">🤖</div>
+        <h3>Automation Testing</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Selenium WebDriver</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pytest</span>
+          <span class="skill-tag">By.ID</span>
+          <span class="skill-tag">By.XPATH</span>
+          <span class="skill-tag">End-to-End Testing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon si-red">🔌</div>
+        <h3>API Testing</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">GET / POST / DELETE</span>
+          <span class="skill-tag">JS Test Scripts</span>
+          <span class="skill-tag">Status Code Validation</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon si-yellow">⚙️</div>
+        <h3>Tools & Methodologies</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Agile</span>
+          <span class="skill-tag">Scrum</span>
+          <span class="skill-tag">SDLC</span>
+          <span class="skill-tag">STLC</span>
+          <span class="skill-tag">Flask</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">What I've Built</div>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects-grid">
+
+      <!-- FEATURED: AI QA Assistant -->
+      <div class="project-card featured">
+        <div class="project-img-area">
+          <div class="mock-browser">
+            <div class="mock-bar">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+              <div class="mock-url">ai-qa-assistant-b9el.onrender.com</div>
+            </div>
+            <div style="background:#1a2540; padding:0.5rem 0.8rem; display:flex; align-items:center; gap:8px; justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#5b6af7;display:flex;align-items:center;justify-content:center;font-size:0.6rem;">🤖</div>
+                <span style="font-family:var(--font-mono);font-size:0.7rem;color:#7eb3ff;font-weight:600;">AI QA Assistant</span>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:0.6rem;color:#3fb950;padding:2px 8px;background:rgba(63,185,80,0.12);border-radius:4px;">🌙 Dark Mode</div>
+            </div>
+            <div style="padding:0.7rem 0.8rem;">
+              <div style="display:flex;gap:6px;margin-bottom:0.7rem;">
+                <div style="font-family:var(--font-mono);font-size:0.6rem;padding:4px 10px;border-radius:5px;background:rgba(0,229,160,0.2);color:var(--accent);">📋 Test Cases</div>
+                <div style="font-family:var(--font-mono);font-size:0.6rem;padding:4px 10px;border-radius:5px;color:var(--text3);border:1px solid var(--border);">🐛 Bug Report</div>
+                <div style="font-family:var(--font-mono);font-size:0.6rem;padding:4px 10px;border-radius:5px;color:var(--text3);border:1px solid var(--border);">📊 Test Data</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;padding:0.6rem;">
+                <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--accent);margin-bottom:5px;">🤖 AI Test Case Generator</div>
+                <div class="mock-input-row">
+                  <div class="mock-input"></div>
+                  <div style="font-family:var(--font-mono);font-size:0.55rem;color:var(--text3);display:flex;align-items:center;padding:0 6px;">Module Name</div>
+                </div>
+                <div class="mock-btn-sm" style="width:100%;justify-content:center;margin-top:5px;height:24px;">🤖 Generate Test Cases with AI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="project-info">
+            <div class="project-type">★ FEATURED PROJECT · AI × QA TOOLING</div>
+            <h3>AI QA Assistant</h3>
+            <p>A live AI-powered QA web app that generates test cases, bug reports, and test data in seconds. Built with Flask and the Groq LLaMA API, it helps reduce manual effort and speeds up QA documentation.</p>
+            <div class="project-meta">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Flask</span>
+                <span class="project-tag">Groq AI</span>
+                <span class="project-tag">HTML/CSS</span>
+                <span class="project-tag">Pytest</span>
+                <span class="project-tag">Render</span>
+              </div>
+              <a class="project-link" href="https://ai-qa-assistant-b9el.onrender.com" target="_blank">Live Demo →</a>
+              <a class="project-link" href="https://github.com/sarbani02/AI-QA-Assistant" target="_blank" style="border-color:rgba(255,255,255,0.2);color:var(--text2);">GitHub Code →</a>
+            </div>
+          </div>
+          <div class="highlight-bar">
+            <div class="hl-item"><div class="hl-dot"></div><div class="hl-text">30 mins → 30 seconds test case generation</div></div>
+            <div class="hl-item"><div class="hl-dot"></div><div class="hl-text">Excel + PDF export features</div></div>
+            <div class="hl-item"><div class="hl-dot"></div><div class="hl-text">5 unit tests · 100% pass rate</div></div>
+            <div class="hl-item"><div class="hl-dot"></div><div class="hl-text">Dark mode + responsive UI</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual Testing: Jira -->
+      <div class="project-card">
+        <div class="project-img-area">
+          <div class="jira-mock">
+            <div class="jira-header">
+              <div style="width:16px;height:16px;background:white;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:900;color:#0052cc;">J</div>
+              <span class="jira-title">QA Testing — Bug Tracking · Backlog</span>
+            </div>
+            <div class="jira-body">
+              <div class="jira-row">
+                <span class="jira-id">QTBT-1</span>
+                <span class="jira-text">Login page accepts invalid email format</span>
+                <span class="jira-status">TO DO</span>
+              </div>
+              <div class="jira-row">
+                <span class="jira-id">QTBT-2</span>
+                <span class="jira-text">No account lockout after 5 failed attempts</span>
+                <span class="jira-status">TO DO</span>
+              </div>
+              <div class="jira-row">
+                <span class="jira-id">QTBT-3</span>
+                <span class="jira-text">Remember Me not working after browser close</span>
+                <span class="jira-status">TO DO</span>
+              </div>
+              <div class="jira-row">
+                <span class="jira-id">QTBT-4</span>
+                <span class="jira-text">Weak password accepted during registration</span>
+                <span class="jira-status">TO DO</span>
+              </div>
+              <div class="jira-row">
+                <span class="jira-id">QTBT-5</span>
+                <span class="jira-text">Duplicate item added to cart</span>
+                <span class="jira-status">TO DO</span>
+              </div>
+              <div class="jira-row">
+                <span class="jira-id">QTBT-6</span>
+                <span class="jira-text">Cart items lost after logout and login</span>
+                <span class="jira-status">TO DO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">MANUAL TESTING · JIRA</div>
+          <h3>E-Commerce QA — Bug Tracking</h3>
+          <p>Designed and executed 30 test cases for login, registration, and cart modules using BVA and Equivalence Partitioning. Logged 8 defects in Jira, tracked their lifecycle, and documented root cause analysis for failed test scenarios.</p>
+          <div class="project-meta">
+            <div class="project-tags">
+              <span class="project-tag">Jira</span>
+              <span class="project-tag">MS Excel</span>
+              <span class="project-tag">BVA</span>
+              <span class="project-tag">Bug Lifecycle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Postman API Testing -->
+      <div class="project-card">
+        <div class="project-img-area">
+          <div class="postman-mock">
+            <div class="pm-header">
+              <div style="width:16px;height:16px;background:white;border-radius:50%;font-size:0.55rem;display:flex;align-items:center;justify-content:center;color:#ff6c37;font-weight:900;">P</div>
+              <span class="pm-title">QA API Test Suite — Run Results</span>
+            </div>
+            <div class="pm-body">
+              <div style="display:flex;gap:1rem;margin-bottom:0.6rem;font-family:var(--font-mono);font-size:0.62rem;">
+                <span style="color:var(--text3);">All tests</span><span style="color:var(--accent);font-weight:600;">6</span>
+                <span style="color:var(--text3);">Passed</span><span style="color:var(--accent);font-weight:600;">6</span>
+                <span style="color:var(--text3);">Failed</span><span style="color:var(--text3);">0</span>
+              </div>
+              <div class="pm-row">
+                <span class="pm-method pm-get">GET</span>
+                <span class="pm-label">GET User by Valid ID</span>
+                <span class="pm-pass">200 ✓</span>
+              </div>
+              <div style="padding-left:40px;font-size:0.58rem;color:var(--accent);margin-bottom:4px;">PASS Status code is 200&nbsp;&nbsp;PASS Response has id</div>
+              <div class="pm-row">
+                <span class="pm-method pm-post">POST</span>
+                <span class="pm-label">POST Create Post</span>
+                <span class="pm-pass">201 ✓</span>
+              </div>
+              <div style="padding-left:40px;font-size:0.58rem;color:var(--accent);margin-bottom:4px;">PASS Status code is 201&nbsp;&nbsp;PASS Response has id</div>
+              <div class="pm-row">
+                <span class="pm-method pm-del">DEL</span>
+                <span class="pm-label">DELETE Post</span>
+                <span class="pm-pass">200 ✓</span>
+              </div>
+              <div style="padding-left:40px;font-size:0.58rem;color:var(--accent);">PASS Status code is 200&nbsp;&nbsp;PASS Body is empty</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">API TESTING · MAY 2026</div>
+          <h3>REST API Test Collection</h3>
+          <p>Built and executed a Postman collection for GET, POST, and DELETE requests against a live JSON API. Validated response codes, response bodies, and data integrity using 6 JavaScript test scripts with zero errors.</p>
+          <div class="project-meta">
+            <div class="project-tags">
+              <span class="project-tag">Postman</span>
+              <span class="project-tag">REST APIs</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">6/6 Pass</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selenium Automation -->
+      <div class="project-card" style="grid-column: 1 / -1;">
+        <div class="selenium-inner-grid">
+          <div class="project-img-area" style="border-bottom:none; border-right:1px solid var(--border);">
+            <div class="selenium-mock">
+              <div class="sel-header">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+                <span class="sel-title">TERMINAL — test_selenium.py</span>
+              </div>
+              <div class="sel-body">
+                <div class="sel-line" style="color:#e6db74;">===== LOGIN PAGE — COMPLETE TEST SUITE =====</div>
+                <div class="sel-line sel-muted">Tester: Sarbani Mondal · May 2026</div>
+                <div class="sel-sep">────────────────────────────────────</div>
+                <div class="sel-line sel-muted">TC_001: Valid Login Test</div>
+                <div class="sel-line">RESULT: PASS <span class="sel-check">✅</span></div>
+                <div class="sel-line sel-muted">User logged in successfully!</div>
+                <div class="sel-sep">────────────────────────────────────</div>
+                <div class="sel-line sel-muted">TC_002: Invalid Username Test</div>
+                <div class="sel-line">RESULT: PASS <span class="sel-check">✅</span></div>
+                <div class="sel-line sel-muted">Error message shown correctly!</div>
+                <div class="sel-sep">────────────────────────────────────</div>
+                <div class="sel-line sel-muted">TC_003: Invalid Password Test</div>
+                <div class="sel-line">RESULT: PASS <span class="sel-check">✅</span></div>
+                <div class="sel-line sel-muted">TC_004: Empty Username Test · PASS <span class="sel-check">✅</span></div>
+                <div class="sel-line sel-muted">TC_005: Empty Password Test · PASS <span class="sel-check">✅</span></div>
+                <div class="sel-sep">────────────────────────────────────</div>
+                <div class="sel-line" style="color:#3fb950;font-weight:600;">✅ ALL 5 TESTS: PASS — 100% PASS RATE</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info" style="justify-content:center;">
+            <div class="project-type">AUTOMATION TESTING · SELENIUM</div>
+            <h3>Login Automation Test Suite</h3>
+            <p>Developed 5 end-to-end login test cases using Python, Selenium WebDriver, and Pytest. Covered valid login, invalid credentials, empty field validation, and error message verification with 100% pass rate.</p>
+            <div class="project-meta" style="margin-top:auto;">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Selenium WebDriver</span>
+                <span class="project-tag">Pytest</span>
+                <span class="project-tag">100% Pass Rate</span>
+                <span class="project-tag">By.XPATH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="certs-bg">
+  <div class="section-inner">
+    <div class="section-label">Verified Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-sub">Industry-recognized certifications spanning software engineering, API testing, cloud computing, and AI/data analytics.</p>
+
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(26,82,204,0.15);">🏦</div>
+        <div class="cert-info">
+          <h4>JPMorgan Chase Software Engineering Virtual Simulation</h4>
+          <p>FORAGE · INDUSTRY SIMULATION</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,108,55,0.15);">🧪</div>
+        <div class="cert-info">
+          <h4>REST API Intermediate Certification</h4>
+          <p>HACKERRANK · API TESTING</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(0,112,243,0.12);">🌐</div>
+        <div class="cert-info">
+          <h4>Cloud Computing Certification</h4>
+          <p>KAUSHALYA TECHNICAL TRAINING</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(0,229,160,0.12);">🤖</div>
+        <div class="cert-info">
+          <h4>TATA GenAI Data Analytics Virtual Simulation</h4>
+          <p>FORAGE · AI &amp; DATA ANALYTICS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Fresher QA Engineer from Siliguri, West Bengal with hands-on experience in manual testing, Selenium automation, API validation, and QA tool development. I enjoy finding defects early and building practical tools that reduce testing effort. Open to relocation.</p>
+      </div>
+      <div class="about-details">
+        <div class="detail-row">
+          <div class="detail-icon">🎓</div>
+          <div>
+            <div class="detail-key">EDUCATION</div>
+            <div class="detail-val">BCA · SB College of Management Studies</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">📍</div>
+          <div>
+            <div class="detail-key">LOCATION</div>
+            <div class="detail-val">Siliguri, West Bengal · Open to Relocation</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">💼</div>
+          <div>
+            <div class="detail-key">STATUS</div>
+            <div class="detail-val">Actively seeking QA Engineer roles</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">📞</div>
+          <div>
+            <div class="detail-key">PHONE</div>
+            <div class="detail-val"><a href="tel:+918597048274" style="color:var(--text);text-decoration:none;">+91 85970 48274</a></div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">🗣️</div>
+          <div>
+            <div class="detail-key">LANGUAGES</div>
+            <div class="detail-val">English · Hindi · Bengali</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">💼</div>
+          <div>
+            <div class="detail-key">LINKEDIN</div>
+            <div class="detail-val"><a href="https://linkedin.com/in/sarbani-mondal-379a40317" target="_blank" style="color:var(--accent);text-decoration:none;">linkedin.com/in/sarbani-mondal ↗</a></div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">💻</div>
+          <div>
+            <div class="detail-key">GITHUB</div>
+            <div class="detail-val"><a href="https://github.com/sarbani02" target="_blank" style="color:var(--accent);text-decoration:none;">github.com/sarbani02 ↗</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="display:block;text-align:center;">Let's Connect</div>
+    <h2 class="section-title" style="text-align:center;">Get In Touch</h2>
+    <p class="section-sub" style="margin:0.5rem auto 0;text-align:center;">Available for QA Engineer roles. Open to relocation. Responds within 24 hours.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://mail.google.com/mail/?view=cm&to=sarbanimandal699@gmail.com">
+        <div class="contact-card-icon" style="background:rgba(255,107,107,0.12);">📧</div>
+        <h4>Email</h4>
+        <p>sarbanimandal699@gmail.com</p>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/sarbani-mondal-379a40317" target="_blank">
+        <div class="contact-card-icon" style="background:rgba(10,102,194,0.15);">💼</div>
+        <h4>LinkedIn</h4>
+        <p>sarbani-mondal-379a40317</p>
+      </a>
+      <a class="contact-card" href="https://github.com/sarbani02" target="_blank">
+        <div class="contact-card-icon" style="background:rgba(255,255,255,0.06);">💻</div>
+        <h4>GitHub</h4>
+        <p>github.com/sarbani02</p>
+      </a>
+      <a class="contact-card" href="https://ai-qa-assistant-b9el.onrender.com" target="_blank">
+        <div class="contact-card-icon" style="background:rgba(0,229,160,0.12);">🤖</div>
+        <h4>Live Project</h4>
+        <p>ai-qa-assistant-b9el.onrender.com</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 <span>Sarbani Mondal</span> · QA Engineer · Siliguri, West Bengal</div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <a href="https://linkedin.com/in/sarbani-mondal-379a40317" target="_blank" style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text3);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">LinkedIn ↗</a>
+      <a href="https://github.com/sarbani02" target="_blank" style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text3);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">GitHub ↗</a>
+      <div class="footer-text">Built with 💚 &amp; a passion for quality</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMobile();
+    }
+  });
+</script>
+
+</body>
+</html>
